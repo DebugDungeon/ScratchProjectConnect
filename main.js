@@ -22,15 +22,20 @@ function main(runtime) {
             return result;
         }
         setInterval(function () {
-            modpow = backdrop.lookupVariableByNameAndType("[math]modpow", "");
-            if (modpow === null) { return; }
-            if (modpow.value.toString().split(" ").length !== 3) { return; }
-            inputs = modpow.value.split(" ");
-            base = BigInt(inputs[0]);
-            exponent = BigInt(inputs[1]);
-            modul = BigInt(inputs[2]);
-            modpow.value = fastModularExponentiation(base, exponent, modul).toString();
-
+            try {
+                modpow = backdrop.lookupVariableByNameAndType("[math]modpow", "");
+                if (modpow === null) { return; }
+                if (modpow.value.toString().split(" ").length !== 3) { return; }
+                inputs = modpow.value.split(" ");
+                base = BigInt(inputs[0]);
+                exponent = BigInt(inputs[1]);
+                modulus = BigInt(inputs[2]);
+                modpow.value = fastModularExponentiation(base, exponent, modulus).toString();
+            }
+            catch (err) {
+                modpow.value = 0;
+                console.log("There was an error while calculating Modular Exponentiation");
+            }
         }, 20)
     }
     answerModPow();
