@@ -16,5 +16,7 @@ Examples:
 It also works with very big integers:
 `set [[math]modpow v] to (9999999999 9999999999 99999999999999999999999999999999999999999999999999)` -> 52741607538340512501055527952006928603125137186912
 
+The value of the variable will be set to the result of the Modular Exponentiation.
+
 ### More
 **Coming soon!**
