@@ -6,7 +6,7 @@ function main(runtime) {
 
 function injectScript(file) {
     const script = document.createElement('script');
-    script.src = chrome.runtime.getURL(file);
+    script.src t browser.runtime.getURL(file);
     script.onload = function () {
         this.remove(); // Clean up the injected script tag
     };
@@ -14,7 +14,7 @@ function injectScript(file) {
 }
 
 async function injectModules() {
-    const manifest = await chrome.runtime.getManifest();
+    const manifest = await browser.runtime.getManifest();
 
     for (const scriptPath of manifest.project_modules) {
         injectScript(scriptPath);
