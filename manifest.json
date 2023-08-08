@@ -6,10 +6,27 @@
   "action": {
     "default_popup": "popup.html"
   },
-  "content_scripts":[
+  "content_scripts": [
     {
-     "matches":["*://scratch.mit.edu/projects/*"],
-     "js":["main.js"]
+      "matches": [
+        "*://scratch.mit.edu/projects/*"
+      ],
+      "js": [
+        "project.js"
+      ]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "modules/*"
+      ],
+      "matches": [
+        "*://scratch.mit.edu/projects/*"
+      ]
+    }
+  ],
+  "project_modules": [
+    "modules/modpow.js"
   ]
 }
