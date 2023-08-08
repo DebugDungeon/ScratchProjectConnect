@@ -22,7 +22,7 @@
         "modules/*"
       ],
       "matches": [
-        "*://scratch.mit.edu/projects/*"
+        "<all_urls>"
       ]
     }
   ],
