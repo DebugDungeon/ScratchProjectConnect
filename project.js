@@ -1,9 +1,4 @@
 
-function main(runtime) {
-    // Scripts go in here
-    answerModPow();
-}
-
 function injectScript(file) {
     const script = document.createElement('script');
     script.src = browser.runtime.getURL(file);
@@ -14,7 +9,10 @@ function injectScript(file) {
 }
 
 async function injectModules() {
-    const manifest = await browser.runtime.getManifest();
+    let manifest
+    try { window.browser = chrome; }
+    catch (err) { console.log(err); }
+    manifest = await browser.runtime.getManifest();
 
     for (const scriptPath of manifest.project_modules) {
         injectScript(scriptPath);
@@ -37,16 +35,7 @@ console.log("Getting targets...");
 
 // Don't edit past this point
 
-try {
-    chrome.scripting.executeScript({
-       args: [],
-       func: (function () {window.interval = setInterval(function () {try {window.runtime = document.getElementById('app')._reactRootContainer._internalRoot.current.child.stateNode.store.getState().scratchGui.vm.runtime; window.sprites = runtime.targets; window.backdrop = sprites[0]; window.global_variables = backdrop.variables; clearInterval(interval); console.log('Running main'); (" + main + ")(runtime);} catch (err) {}}, 1000)})
-    });
-    console.log("Injected!");
-}
-catch (err) {
-    const reactRootFinder = document.createElement("script");
-    reactRootFinder.append(document.createTextNode("const interval = setInterval(function () {try {window.runtime = document.getElementById('app')._reactRootContainer._internalRoot.current.child.stateNode.store.getState().scratchGui.vm.runtime; window.sprites = runtime.targets; window.backdrop = sprites[0]; window.global_variables = backdrop.variables; clearInterval(interval); console.log('Running main'); (" + main + ")(runtime);} catch (err) {}}, 1000)"));
-    (document.head || document.documentElement).appendChild(reactRootFinder);
-    console.log("Injected!");
-}
+const reactRootFinder = document.createElement("script");
+reactRootFinder.append(document.createTextNode("const interval = setInterval(function () {try {window.runtime = document.getElementById('app')._reactRootContainer._internalRoot.current.child.stateNode.store.getState().scratchGui.vm.runtime; window.sprites = runtime.targets; window.backdrop = sprites[0]; window.global_variables = backdrop.variables; clearInterval(interval); console.log('Running main'); (" + main + ")(runtime);} catch (err) {}}, 1000)"));
+(document.head || document.documentElement).appendChild(reactRootFinder);
+console.log("Injected!");

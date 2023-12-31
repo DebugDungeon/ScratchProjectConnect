@@ -27,6 +27,14 @@
     }
   ],
   "project_modules": [
-    "modules/modpow.js"
+    "modules/modpow.js",
+    "modules/red.js"
+  ],
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://scratch.mit.edu/projects/*"
   ]
 }
