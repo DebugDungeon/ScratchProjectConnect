@@ -28,6 +28,7 @@
   ],
   "project_modules": [
     "modules/modpow.js",
+    "modules/localstorage.js",
     "modules/red.js"
   ],
   "permissions": [
