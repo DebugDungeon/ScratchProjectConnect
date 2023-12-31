@@ -34,4 +34,5 @@ function answerModPow() { // Respond to changes to the variable [math]modpow
             console.log("There was an error while calculating Modular Exponentiation");
         }
     }, 20)
+    console.log("modpow is here");
 }
