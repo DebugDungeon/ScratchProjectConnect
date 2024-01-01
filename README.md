@@ -18,5 +18,13 @@ Examples:
 It also works with very big integers:
 `set [[math]modpow v] to (9999999999 9999999999 99999999999999999999999999999999999999999999999999)` -> 52741607538340512501055527952006928603125137186912
 
-### More
-**Coming soon!**
+### Local Storage
+In Scratch, we often have save codes for continuing playing a game, but Scratch doesn't have a system for storing these codes well.
+
+Using ScratchProjectConnect, you can just mark variables as local and they will be saved in your browser's Local Storage. For this, you just need to add the prefix `[local]` to your variable.
+
+Examples:
+`[local]savecode`
+`[local]data`
+
+### More coming soon!
